@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height:300px;
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+      
+  
+
+        }
+        .box{
+   height: 100px;
+   width: 100px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+   
+        }
+    </style>
+</head>
+<body>
+    <h1>welcome to the game development</h1>
+    <div class="container">
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+
+        <button class="box"></button>
+        
+
+    </div>
+    <button class="reset">reset</button>
+    <script>
+        let boxes=document.querySelectorAll('.box');
+        let reset=document.querySelector('.reset');
+        let turno=true;
+        let pattern=[
+            [0,1,2],
+            [0,3,6],
+            [0,4,8],
+            [1,4,7],
+            [2,5,8],
+            [2,4,6],
+            [3,4,5],
+            [6,7,8]
+
+        ];
+        boxes.forEach((box)=>{
+            box.addEventListener("click",()=>{
+            if(turno){
+                box.innerText='x';
+                turno=false;
+            }else{
+                box.innerText='o';
+
+                turno=true;
+            }
+            box.disabled=true;
+            checkwiner();
+            })
+          
+        });
+        function checkwiner(){
+            for(let  patters of pattern){
+            let player1=boxes[patters[0]].innerText;
+            let player2=boxes[patters[1]].innerText;
+            let player3=boxes[patters[2]].innerText;
+        
+            
+            if(player1 !='' && player2 !='' && player3 !=''){
+                if(player1===player2 && player2===player3){
+                    console.log('winner');
+                }
+            }
+        }
+
+        }
+    </script>
+</body>
+</html>
